@@ -1,8 +1,33 @@
 aid: premialab
-name: premialab
-description: premialab is a company surfaced as a portfolio company of balderton-capital and added to
-  the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/premialab.png
+name: PremiaLab
+description: >-
+  PremiaLab is a portfolio performance and risk analytics platform for
+  institutional investors — asset owners, asset managers, and consultants who
+  collectively manage roughly $20 trillion in assets. Its platform provides a
+  quantitative strategy database of more than 7,000 single- and multi-asset
+  systematic (QIS) strategies from 18 leading investment banks, position-based
+  risk analytics (stress tests, sensitivities and VaR across asset classes), the
+  proprietary Premialab Pure Factors model for decomposing market risk premia,
+  independent price verification with daily index-level reconciliation, and
+  standardized QIS Index futures offered in partnership with Eurex. PremiaLab
+  exposes a client-facing REST API at api.premialab.com that is protected by an
+  OAuth2 / OpenID Connect authorization server; API access is provisioned for
+  institutional clients rather than through self-service developer signup. This
+  profile was surfaced as a Balderton Capital portfolio company and enriched from
+  PremiaLab's public web and authentication surface.
 url: https://raw.githubusercontent.com/api-evangelist/premialab/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -12,15 +37,59 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
-apis: []
+- Financial Services
+- Fintech
+- Investment Management
+- Risk Analytics
+- Portfolio Analytics
+- Quantitative Investment Strategies
+- Factor Investing
+apis:
+- name: PremiaLab Client API
+  description: >-
+    Client-facing REST API for PremiaLab's portfolio analytics, quantitative
+    strategy database, and risk reporting platform. Protected by OAuth2/OpenID
+    Connect; access is provisioned for institutional clients.
+  humanURL: https://premialab.com/solutions/premialab-platform
+  baseURL: https://api.premialab.com
+  tags:
+  - Risk Analytics
+  - Portfolio Analytics
+  - Quantitative Investment Strategies
+  properties:
+  - type: Authentication
+    url: authentication/premialab-authentication.yml
+  - type: OAuthScopes
+    url: scopes/premialab-scopes.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/premialab-domain-security.yml
+- type: Authentication
+  url: authentication/premialab-authentication.yml
+- type: OAuthScopes
+  url: scopes/premialab-scopes.yml
+- type: WellKnown
+  url: well-known/premialab-well-known.yml
 - type: Website
   url: https://premialab.com/
+- type: Blog
+  url: https://premialab.com/news
+- type: Support
+  url: https://premialab.com/contact-us
+- type: TermsOfService
+  url: https://premialab.com/terms
+- type: PrivacyPolicy
+  url: https://premialab.com/privacy
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 4
+  pass: local-v1

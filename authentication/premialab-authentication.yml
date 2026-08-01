@@ -1,0 +1,51 @@
+generated: '2026-07-20'
+method: searched
+source: >-
+  Live probe of https://api.premialab.com (HTTP 302 to Okta authorize) and the
+  OIDC discovery document at https://sso.plbtech.com/.well-known/openid-configuration
+summary:
+  types: [oauth2, openIdConnect]
+  oauth2_flows: [authorizationCode, deviceCode, clientCredentials, refreshToken]
+  api_key_in: []
+  notes: >-
+    The PremiaLab client API is not publicly documented and requires an
+    OAuth2/OIDC access token issued by the PremiaLab Tech (plbtech.com) Okta
+    authorization server. Access is provisioned for institutional clients; no
+    self-service developer signup is published.
+schemes:
+  - name: PremiaLabOIDC
+    type: openIdConnect
+    openIdConnectUrl: https://sso.plbtech.com/.well-known/openid-configuration
+    issuer: https://sso.plbtech.com
+    sources: [well-known/premialab-openid-configuration.json]
+  - name: PremiaLabOAuth2
+    type: oauth2
+    sources: [well-known/premialab-openid-configuration.json]
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://sso.plbtech.com/oauth2/v1/authorize
+        tokenUrl: https://sso.plbtech.com/oauth2/v1/token
+        pkce: S256
+      - flow: deviceCode
+        deviceAuthorizationUrl: https://sso.plbtech.com/oauth2/v1/device/authorize
+        tokenUrl: https://sso.plbtech.com/oauth2/v1/token
+      - flow: refreshToken
+        tokenUrl: https://sso.plbtech.com/oauth2/v1/token
+endpoints:
+  authorization: https://sso.plbtech.com/oauth2/v1/authorize
+  token: https://sso.plbtech.com/oauth2/v1/token
+  userinfo: https://sso.plbtech.com/oauth2/v1/userinfo
+  jwks: https://sso.plbtech.com/oauth2/v1/keys
+  introspection: https://sso.plbtech.com/oauth2/v1/introspect
+  revocation: https://sso.plbtech.com/oauth2/v1/revoke
+  end_session: https://sso.plbtech.com/oauth2/v1/logout
+  registration: https://sso.plbtech.com/oauth2/v1/clients
+  pushed_authorization_request: https://sso.plbtech.com/oauth2/v1/par
+token_endpoint_auth_methods:
+  - client_secret_basic
+  - client_secret_post
+  - client_secret_jwt
+  - private_key_jwt
+  - none
+id_token_signing_alg: [RS256]
+dpop_supported: true

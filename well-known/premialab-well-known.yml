@@ -1,0 +1,28 @@
+generated: '2026-07-20'
+method: searched
+source: live probe of PremiaLab API + SSO hosts
+notes: >-
+  The PremiaLab client API at https://api.premialab.com is protected by an
+  OAuth2/OpenID Connect authorization server (Okta) hosted at
+  https://sso.plbtech.com (PremiaLab Tech). Unauthenticated requests to
+  api.premialab.com return HTTP 302 to the SSO authorize endpoint. The SSO
+  issuer publishes a public OIDC discovery document, saved verbatim below.
+hosts:
+  - host: https://api.premialab.com
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 302
+        note: redirects to sso.plbtech.com authorize (authentication required)
+      - path: /.well-known/security.txt
+        status: 302
+      - path: /.well-known/oauth-authorization-server
+        status: 302
+  - host: https://sso.plbtech.com
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 200
+        file: premialab-openid-configuration.json
+  - host: https://premialab.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
