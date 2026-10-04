@@ -51,7 +51,7 @@ created: '2026-07-17'
 modified: '2026-07-20'
 tags:
 - Company
-- Financial-Services
+- Financial Services
 - Fintech
 - Investment Management
 - Risk Analytics
@@ -67,6 +67,7 @@ tags_raw:
 - Portfolio Analytics
 - Quantitative Investment Strategies
 - Factor Investing
+- Financial-Services
 apis:
 - name: PremiaLab Client API
   description: >-
